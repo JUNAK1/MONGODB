@@ -1,9 +1,6 @@
 package com.uptc.frw.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -27,7 +24,21 @@ public class Venta {
     private Long idTipoPago;
     @Column(name = "ID_VEHICULO", insertable = false, updatable = false)
     private Long idNuevo;
-/**/
+//Relacion VEHICULOS
+    @ManyToOne
+    @JoinColumn(name="idTipoPago", nullable = false)
+    private Vehiculo tipodepago;
+    @ManyToOne
+    @JoinColumn(name="idNuevo", nullable = false)
+    private Vehiculo nuevo;
+//RELACION PERSONAS
+    @ManyToOne
+    @JoinColumn(name="idCliente", nullable=false)
+    private Persona cliente;
+    @ManyToOne
+    @JoinColumn(name="idVendedor", nullable=false)
+    private Persona vendedor;
+
     public Venta(){}
 
     public Venta(Long id, Date fechaVenta, String tipoPago, Long idCliente, Long idvendedor, Long idTipoPago, Long idNuevo) {

@@ -1,11 +1,9 @@
 package com.uptc.frw.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSONAS")
@@ -29,8 +27,11 @@ public class Persona {
     private String direccion;
     @Column(name = "TELEFONOS")
     private String telefono;
-
     /**/
+    @OneToMany(mappedBy="cliente")
+    private List<Venta> ventasComoCliente;
+    @OneToMany(mappedBy="vendedor")
+    private List<Venta> ventasComoVendedor;
     public Persona(){}
 
     public Persona(Long id, String nombre, String apellido, Date fechaNacimiento, String tipoDocumento, String numeroDocumento, String direccion, String telefono) {

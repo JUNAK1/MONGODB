@@ -1,9 +1,8 @@
 package com.uptc.frw.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "MODELOS")
@@ -19,6 +18,8 @@ public class Modelo {
     @Column(name = "TIPO_VEHICULOS")
     private String tipoVehiculo;
 
+    @OneToMany(mappedBy = "modelo")
+    private List<Vehiculo>vehiculos;
     /**/
 
     public Modelo(){}

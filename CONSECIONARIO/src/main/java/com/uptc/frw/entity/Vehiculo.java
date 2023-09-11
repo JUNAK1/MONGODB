@@ -1,9 +1,8 @@
 package com.uptc.frw.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "VEHICULOS")
@@ -26,6 +25,25 @@ public class Vehiculo {
 
     @Column(name = "ID_MODELO", insertable = false, updatable = false)
     private Long idModelo;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_MODELO", nullable = false)
+    private Modelo modele;
+
+    @ManyToMany(mappedBy="adicionales")
+    private List<Adicional>adicionals;
+
+    @OneToMany(mappedBy="tipoPago")
+    private List<Venta> ventasComoTipoPago;
+    @OneToMany(mappedBy="nuevo")
+    private List<Venta> ventasComoNuevo;
+
+    /*
+    @OneToMany(mappedBy = "vehiculo")
+    private List<Venta>ventas;
+    @OneToMany(mappedBy = "vehiculo")
+    private List<Venta>ventas;*/
+
     /**/
     public Vehiculo(){}
 
