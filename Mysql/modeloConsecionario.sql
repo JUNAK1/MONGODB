@@ -1,5 +1,5 @@
-create database consecionario;
-use consecionario;
+create database concesionario;
+use concesionario;
 
 CREATE TABLE MODELO(
 	idModelo BIGINT PRIMARY KEY,
@@ -30,8 +30,8 @@ CREATE TABLE VEHICULOS(
     marca VARCHAR(50),
     modelo VARCHAR(50),
     cilindrada VARCHAR(50),
-    precio INT,
-    matricula INT,
+    precio DECIMAL(10,3),
+    matricula VARCHAR(50),
     usado BOOLEAN,
 	idModelo BIGINT,
     FOREIGN KEY (idModelo) REFERENCES MODELO(idModelo)
@@ -46,7 +46,7 @@ CREATE TABLE VEHICULOS_ADICIONALES(
 CREATE TABLE VENTAS (
     idVentas BIGINT PRIMARY KEY,
     fechaVenta DATE,
-    tipoPago VARCHAR(2),
+    tipoPago VARCHAR(25),
     
     idCliente BIGINT, -- FK  CLIENTE_FACTURA
     idVendedor BIGINT, -- FK VENDEDOR_FACTURA
