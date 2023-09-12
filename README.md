@@ -22,3 +22,5 @@ CREAR UN APLICATIVO JAVA QUE PERMITA LAS ACCIONES DE CRUD PARA CADA UNA DE LAS E
 RETO CONCEPTUAL
 
 El reto de este caso consiste en determinar que información se puede almacenar en una base de datos no relacional y hacer la integración con MongoDB para almacenar esta información. 
+
+![](https://github.com/JUNAK1/MONGODB/blob/JAVA/Mysql/Modelo_Concesionario.png)
