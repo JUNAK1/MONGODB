@@ -15,16 +15,33 @@ public class VentasMy {
     private Date fechaVenta;
     @Column(name = "tipoPago")
     private String tipoPago;
-    @Column(name = "idCliente")
+    @Column(name = "idCliente", insertable = false, updatable = false)
     private Long idCliente;
-    @Column(name = "idVendedor")
+    @Column(name = "idVendedor", insertable = false, updatable = false)
     private Long idVendedor;
-    @Column(name ="idTipoPago")
+    @Column(name ="idTipoPago",insertable = false, updatable = false)
     private Long idTipoPago;
-    @Column(name = "idNuevo")
+    @Column(name = "idNuevo", insertable = false, updatable = false)
     private Long idNuevo;
+//----------------------------------------------------------------------------
 
+    @ManyToOne
+    @JoinColumn(name = "idVendedor")
+    private PersonasMy vendedorMy;
 
+    @ManyToOne
+    @JoinColumn(name = "idCliente")
+    private PersonasMy clienteMy;
+
+    @ManyToOne
+    @JoinColumn(name = "idNuevo")
+    private VehiculosMy vehiculoNuevo;
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoPago")
+    private VehiculosMy vehiculoPago;
+
+//----------------------------------------------------------------------------------------------
     public VentasMy() {
     }
 
@@ -88,5 +105,37 @@ public class VentasMy {
 
     public void setIdNuevo(Long idNuevo) {
         this.idNuevo = idNuevo;
+    }
+
+    public PersonasMy getVendedorMy() {
+        return vendedorMy;
+    }
+
+    public void setVendedorMy(PersonasMy vendedorMy) {
+        this.vendedorMy = vendedorMy;
+    }
+
+    public PersonasMy getClienteMy() {
+        return clienteMy;
+    }
+
+    public void setClienteMy(PersonasMy clienteMy) {
+        this.clienteMy = clienteMy;
+    }
+
+    public VehiculosMy getVehiculoNuevo() {
+        return vehiculoNuevo;
+    }
+
+    public void setVehiculoNuevo(VehiculosMy vehiculoNuevo) {
+        this.vehiculoNuevo = vehiculoNuevo;
+    }
+
+    public VehiculosMy getVehiculoPago() {
+        return vehiculoPago;
+    }
+
+    public void setVehiculoPago(VehiculosMy vehiculoPago) {
+        this.vehiculoPago = vehiculoPago;
     }
 }

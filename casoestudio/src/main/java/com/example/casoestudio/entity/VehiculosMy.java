@@ -1,6 +1,7 @@
 package com.example.casoestudio.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "VEHICULOS")
@@ -8,7 +9,7 @@ public class VehiculosMy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idVehiculos")
+    @Column(name = "idVehiculos", insertable = false, updatable = false)
     private Long idVehiculos;
     @Column(name = "marca")
     private String marca;
@@ -22,9 +23,26 @@ public class VehiculosMy {
     private String matricula;
     @Column(name = "usado")
     private Boolean usado;
-    @Column(name = "idModelo")
+    @Column(name = "idModelo", insertable = false, updatable = false)
     private Long idModelo;
 
+
+    //-----RELACIONES ENTRE TABLAS----------------------------------------------------------
+
+    @ManyToMany(mappedBy = "vehiculosToMany")
+    private List<AdicionalesMy> adicional;
+
+    @ManyToOne
+    @JoinColumn(name = "idModelo")
+    private ModeloMy modeloMy;
+
+    @OneToMany(mappedBy = "vehiculoNuevo")
+    private List<VentasMy> ventasNuevo;
+
+    @OneToMany(mappedBy = "vehiculoPago")
+    private List<VentasMy> ventasPago;
+
+    //--------------------------------------------------------------------------------------
 
     public VehiculosMy() {
     }
@@ -107,16 +125,35 @@ public class VehiculosMy {
         this.idModelo = idModelo;
     }
 
-    @Override
-    public String toString() {
-        return "VehiculosMy{" +
-                "idVehiculos=" + idVehiculos +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", cilindrada='" + cilindrada + '\'' +
-                ", precio=" + precio +
-                ", matricula='" + matricula + '\'' +
-                ", usado=" + usado +
-                '}';
+    public List<AdicionalesMy> getAdicional() {
+        return adicional;
+    }
+
+    public void setAdicional(List<AdicionalesMy> adicional) {
+        this.adicional = adicional;
+    }
+
+    public ModeloMy getModeloMy() {
+        return modeloMy;
+    }
+
+    public void setModeloMy(ModeloMy modeloMy) {
+        this.modeloMy = modeloMy;
+    }
+
+    public List<VentasMy> getVentasNuevo() {
+        return ventasNuevo;
+    }
+
+    public void setVentasNuevo(List<VentasMy> ventasNuevo) {
+        this.ventasNuevo = ventasNuevo;
+    }
+
+    public List<VentasMy> getVentasPago() {
+        return ventasPago;
+    }
+
+    public void setVentasPago(List<VentasMy> ventasPago) {
+        this.ventasPago = ventasPago;
     }
 }

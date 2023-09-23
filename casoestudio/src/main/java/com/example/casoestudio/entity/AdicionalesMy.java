@@ -1,6 +1,7 @@
 package com.example.casoestudio.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ADICIONALES")
@@ -21,6 +22,16 @@ public class AdicionalesMy {
     @Column(name = "descripcion")
     private String descripcion;
 
+    //-----RELACIONES ENTRE TABLAS----------------------------------------------------------
+
+    @ManyToMany
+    @JoinTable(name = "VEHICULOS_ADICIONALES",
+            joinColumns = @JoinColumn(name = "idAdicionales"),
+            inverseJoinColumns = @JoinColumn(name = "id_Vehiculo"))
+    private List<VehiculosMy> vehiculosToMany;
+
+
+    //-------------------------------------------------------------------------------------
     public AdicionalesMy() {
     }
 
@@ -84,15 +95,11 @@ public class AdicionalesMy {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "AdicionalesMyServices{" +
-                "idAdicionales=" + idAdicionales +
-                ", aireAcondicionado=" + aireAcondicionado +
-                ", rinesLujo=" + rinesLujo +
-                ", acientosCuero=" + acientosCuero +
-                ", vidrioElectricos=" + vidrioElectricos +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+    public List<VehiculosMy> getVehiculosToMany() {
+        return vehiculosToMany;
+    }
+
+    public void setVehiculosToMany(List<VehiculosMy> vehiculosToMany) {
+        this.vehiculosToMany = vehiculosToMany;
     }
 }

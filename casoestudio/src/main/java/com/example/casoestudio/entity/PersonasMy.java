@@ -2,6 +2,7 @@ package com.example.casoestudio.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name ="PERSONAS")
@@ -27,6 +28,15 @@ public class PersonasMy {
     private String telefono;
     @Column(name = "fechaPersona")
     private Date fechaPersona;
+    //---------------------------------------------------------------------------------
+
+    @OneToMany(mappedBy = "vendedorMy")
+    private List<VentasMy> ventasVendedor;
+
+    @OneToMany(mappedBy = "clienteMy")
+    private List<VentasMy> ventasCliente;
+
+    //---------------------------------------------------------------------------------
 
     public PersonasMy() {
     }
@@ -119,19 +129,19 @@ public class PersonasMy {
         this.fechaPersona = fechaPersona;
     }
 
-    @Override
-    public String toString() {
-        return "PersonasMy{" +
-                "idPersona=" + idPersona +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", tipoDocumento='" + tipoDocumento + '\'' +
-                ", numeroDocumento='" + numeroDocumento + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", fechaPersona=" + fechaPersona +
-                '}';
+    public List<VentasMy> getVentasVendedor() {
+        return ventasVendedor;
     }
 
+    public void setVentasVendedor(List<VentasMy> ventasVendedor) {
+        this.ventasVendedor = ventasVendedor;
+    }
+
+    public List<VentasMy> getVentasCliente() {
+        return ventasCliente;
+    }
+
+    public void setVentasCliente(List<VentasMy> ventasCliente) {
+        this.ventasCliente = ventasCliente;
+    }
 }

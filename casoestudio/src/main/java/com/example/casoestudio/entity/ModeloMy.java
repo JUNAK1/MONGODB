@@ -2,6 +2,7 @@ package com.example.casoestudio.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "MODELO")
@@ -16,6 +17,13 @@ public class ModeloMy {
     private String referencia;
     @Column(name = "tipoVehiculo")
     private String tipoVehiculo;
+
+    //-----RELACIONES ENTRE TABLAS----------------------------------------------------------
+
+    @OneToMany(mappedBy = "modeloMy")
+    private List<VehiculosMy> vehiculosMyList;
+
+//-------------------------------------------------------------------------------------------
 
     public ModeloMy() {
     }
@@ -59,13 +67,11 @@ public class ModeloMy {
         this.tipoVehiculo = tipoVehiculo;
     }
 
-    @Override
-    public String toString() {
-        return "ModeloMy{" +
-                "idModelo=" + idModelo +
-                ", fechaAno=" + fechaAno +
-                ", referencia='" + referencia + '\'' +
-                ", tipoVehiculo='" + tipoVehiculo + '\'' +
-                '}';
+    public List<VehiculosMy> getVehiculosMyList() {
+        return vehiculosMyList;
+    }
+
+    public void setVehiculosMyList(List<VehiculosMy> vehiculosMyList) {
+        this.vehiculosMyList = vehiculosMyList;
     }
 }
